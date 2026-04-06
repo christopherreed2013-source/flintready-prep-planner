@@ -1,7 +1,43 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+
+const PRICE_ID = "price_1TJHsHCfOu27oXRxW0Wj9Bdw";
+
+function CheckoutButton() {
+  const [loading, setLoading] = useState(false);
+
+  async function handleCheckout() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          priceId: PRICE_ID,
+          successUrl: `${window.location.origin}/success`,
+          cancelUrl: window.location.href,
+        }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
+  }
+
+  return (
+    <button
+      onClick={handleCheckout}
+      disabled={loading}
+      className="bg-orange-500 hover:bg-orange-400 disabled:opacity-60 text-white font-bold px-8 py-3 rounded-xl transition-colors"
+    >
+      {loading ? "Redirecting..." : "Unlock Full Access — $19 one-time"}
+    </button>
+  );
+}
 
 type ChecklistSection = {
   title: string;
@@ -151,9 +187,7 @@ function ChecklistContent() {
           <p className="text-stone-400 text-sm">
             Get lifetime access — save your plan, track what you&apos;ve bought, and unlock advanced categories.
           </p>
-          <button className="bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3 rounded-xl transition-colors">
-            Unlock Full Access — $19 one-time
-          </button>
+          <CheckoutButton />
         </div>
 
         {/* Checklist Sections */}
