@@ -47,6 +47,8 @@ type ChecklistSection = {
 
 function generateChecklist(params: Record<string, string>): ChecklistSection[] {
   const sections: ChecklistSection[] = [];
+  // Normalize threats to array for easy matching
+  const threatList = (params.threats || "General all-hazards").split("|").map(t => t.trim());
 
   // --- WATER ---
   const householdSize = params.household_size || "2";
@@ -60,7 +62,7 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
       { name: `${gallons72hr} gallons stored water (72-hour minimum)`, note: "1 gallon/person/day" },
       { name: "Water filtration (Sawyer Squeeze or LifeStraw)", affiliate: "https://www.amazon.com/s?k=sawyer+squeeze+water+filter&tag=sustainab0b2b-20" },
       { name: "Water purification tablets", affiliate: "https://www.amazon.com/s?k=water+purification+tablets&tag=sustainab0b2b-20" },
-      ...(params.threats?.includes("flood") ? [{ name: "Waterproof container for water storage" }] : []),
+      ...(threatList.some(t => t.includes("flood") || t.includes("Hurricane")) ? [{ name: "Waterproof container for water storage" }] : []),
     ],
   });
 
@@ -88,7 +90,7 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
       { name: "Extra batteries (AA, AAA, D)" },
       { name: "Headlamps for hands-free work", affiliate: "https://www.amazon.com/s?k=headlamp+camping&tag=sustainab0b2b-20" },
       { name: "Portable power bank (20,000mAh+)", affiliate: "https://www.amazon.com/s?k=portable+power+bank+20000mah&tag=sustainab0b2b-20" },
-      ...(params.threats?.includes("Power") || params.threats?.includes("grid") ? [
+      ...(threatList.some(t => t.includes("Power") || t.includes("grid")) ? [
         { name: "Portable solar panel charger", affiliate: "https://www.amazon.com/s?k=portable+solar+panel+charger&tag=sustainab0b2b-20" },
         { name: "Generator or power station (Goal Zero / Jackery)", affiliate: "https://www.amazon.com/s?k=jackery+power+station&tag=sustainab0b2b-20" },
       ] : []),
@@ -117,7 +119,7 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
       { name: "NOAA Weather Radio (hand-crank)", affiliate: "https://www.amazon.com/s?k=noaa+weather+radio+hand+crank&tag=sustainab0b2b-20" },
       { name: "Battery-powered or solar AM/FM radio" },
       { name: "Whistle (signal for help)" },
-      ...(params.threats?.includes("grid") || params.threats?.includes("civil") ? [
+      ...(threatList.some(t => t.includes("grid") || t.includes("civil")) ? [
         { name: "Baofeng UV-5R two-way radio", affiliate: "https://www.amazon.com/s?k=baofeng+uv-5r&tag=sustainab0b2b-20" },
         { name: "GMRS/FRS radios for family comms", affiliate: "https://www.amazon.com/s?k=gmrs+frs+two+way+radio&tag=sustainab0b2b-20" },
       ] : []),
@@ -125,6 +127,21 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
   });
 
   // --- SHELTER / WARMTH ---
+  // Add wildfire section
+  if (threatList.some(t => t.includes("Wildfire"))) {
+    sections.push({
+      title: "Wildfire Prep",
+      emoji: "🔥",
+      items: [
+        { name: "N95 or P100 respirator masks (1 per person)", affiliate: "https://www.amazon.com/s?k=n95+respirator+mask&tag=sustainab0b2b-20" },
+        { name: "Go-bag pre-packed and ready to grab in under 5 min" },
+        { name: "Know your evacuation routes (2+ options)" },
+        { name: "Goggles for smoke/ash protection", affiliate: "https://www.amazon.com/s?k=safety+goggles+smoke&tag=sustainab0b2b-20" },
+        { name: "Battery powered air quality monitor", affiliate: "https://www.amazon.com/s?k=air+quality+monitor+portable&tag=sustainab0b2b-20" },
+      ],
+    });
+  }
+
   if (params.climate?.includes("Cold") || params.climate?.includes("Mountain")) {
     sections.push({
       title: "Shelter & Warmth",
@@ -167,7 +184,8 @@ function ChecklistContent() {
   const checklist = generateChecklist(params);
 
   const prepLevel = params.prep_level || "Just starting";
-  const threat = params.threats || "General all-hazards";
+  const threatRaw = params.threats || "General all-hazards";
+  const threat = threatRaw.includes("|") ? threatRaw.split("|").join(", ") : threatRaw;
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100 px-4 py-12">
