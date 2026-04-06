@@ -58,8 +58,8 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     emoji: "💧",
     items: [
       { name: `${gallons72hr} gallons stored water (72-hour minimum)`, note: "1 gallon/person/day" },
-      { name: "Water filtration (Sawyer Squeeze or LifeStraw)", affiliate: "https://amzn.to/sawyer" },
-      { name: "Water purification tablets", affiliate: "https://amzn.to/aquatabs" },
+      { name: "Water filtration (Sawyer Squeeze or LifeStraw)", affiliate: "https://www.amazon.com/s?k=sawyer+squeeze+water+filter&tag=sustainab0b2b-20" },
+      { name: "Water purification tablets", affiliate: "https://www.amazon.com/s?k=water+purification+tablets&tag=sustainab0b2b-20" },
       ...(params.threats?.includes("flood") ? [{ name: "Waterproof container for water storage" }] : []),
     ],
   });
@@ -71,7 +71,7 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     emoji: "🥫",
     items: [
       { name: `${sizeNum * days * 2} cans of non-perishables (beans, tuna, soup)` },
-      { name: "Manual can opener", affiliate: "https://amzn.to/canopener" },
+      { name: "Manual can opener", affiliate: "https://www.amazon.com/s?k=manual+can+opener&tag=sustainab0b2b-20" },
       { name: "Peanut butter (high calorie, long shelf life)" },
       { name: "Rice and dried pasta (sealed buckets)" },
       ...(params.has_kids === "Yes" ? [{ name: "Kid-friendly snacks + comfort foods" }] : []),
@@ -84,13 +84,13 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     title: "Power & Light",
     emoji: "🔦",
     items: [
-      { name: "Flashlights (1 per person + extras)", affiliate: "https://amzn.to/flashlight" },
+      { name: "Flashlights (1 per person + extras)", affiliate: "https://www.amazon.com/s?k=emergency+flashlight&tag=sustainab0b2b-20" },
       { name: "Extra batteries (AA, AAA, D)" },
-      { name: "Headlamps for hands-free work", affiliate: "https://amzn.to/headlamp" },
-      { name: "Portable power bank (20,000mAh+)", affiliate: "https://amzn.to/powerbank" },
+      { name: "Headlamps for hands-free work", affiliate: "https://www.amazon.com/s?k=headlamp+camping&tag=sustainab0b2b-20" },
+      { name: "Portable power bank (20,000mAh+)", affiliate: "https://www.amazon.com/s?k=portable+power+bank+20000mah&tag=sustainab0b2b-20" },
       ...(params.threats?.includes("Power") || params.threats?.includes("grid") ? [
-        { name: "Portable solar panel charger", affiliate: "https://amzn.to/solarpanel" },
-        { name: "Generator or power station (Goal Zero / Jackery)", affiliate: "https://amzn.to/jackery" },
+        { name: "Portable solar panel charger", affiliate: "https://www.amazon.com/s?k=portable+solar+panel+charger&tag=sustainab0b2b-20" },
+        { name: "Generator or power station (Goal Zero / Jackery)", affiliate: "https://www.amazon.com/s?k=jackery+power+station&tag=sustainab0b2b-20" },
       ] : []),
     ],
   });
@@ -100,8 +100,8 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     title: "First Aid & Medical",
     emoji: "🩹",
     items: [
-      { name: "Comprehensive first aid kit", affiliate: "https://amzn.to/firstaidkit" },
-      { name: "Tourniquet (CAT or SOFTT-W)", affiliate: "https://amzn.to/tourniquet" },
+      { name: "Comprehensive first aid kit", affiliate: "https://www.amazon.com/s?k=first+aid+kit+emergency&tag=sustainab0b2b-20" },
+      { name: "Tourniquet (CAT or SOFTT-W)", affiliate: "https://www.amazon.com/s?k=CAT+tourniquet&tag=sustainab0b2b-20" },
       { name: "Nitrile gloves (box of 100)" },
       { name: "30-day supply of prescription medications" },
       { name: "Pain relievers, antidiarrheal, antacids" },
@@ -114,12 +114,12 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     title: "Communications",
     emoji: "📻",
     items: [
-      { name: "NOAA Weather Radio (hand-crank)", affiliate: "https://amzn.to/weatherradio" },
+      { name: "NOAA Weather Radio (hand-crank)", affiliate: "https://www.amazon.com/s?k=noaa+weather+radio+hand+crank&tag=sustainab0b2b-20" },
       { name: "Battery-powered or solar AM/FM radio" },
       { name: "Whistle (signal for help)" },
       ...(params.threats?.includes("grid") || params.threats?.includes("civil") ? [
-        { name: "Baofeng UV-5R two-way radio", affiliate: "https://amzn.to/baofeng" },
-        { name: "GMRS/FRS radios for family comms", affiliate: "https://amzn.to/frsradio" },
+        { name: "Baofeng UV-5R two-way radio", affiliate: "https://www.amazon.com/s?k=baofeng+uv-5r&tag=sustainab0b2b-20" },
+        { name: "GMRS/FRS radios for family comms", affiliate: "https://www.amazon.com/s?k=gmrs+frs+two+way+radio&tag=sustainab0b2b-20" },
       ] : []),
     ],
   });
@@ -130,9 +130,9 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
       title: "Shelter & Warmth",
       emoji: "🏕️",
       items: [
-        { name: "Emergency Mylar blankets (2 per person)", affiliate: "https://amzn.to/mylar" },
-        { name: "Sleeping bags rated for your climate", affiliate: "https://amzn.to/sleepingbag" },
-        { name: "Propane heater (indoor-safe) + extra fuel", affiliate: "https://amzn.to/propaneheater" },
+        { name: "Emergency Mylar blankets (2 per person)", affiliate: "https://www.amazon.com/s?k=emergency+mylar+blankets&tag=sustainab0b2b-20" },
+        { name: "Sleeping bags rated for your climate", affiliate: "https://www.amazon.com/s?k=cold+weather+sleeping+bag&tag=sustainab0b2b-20" },
+        { name: "Propane heater (indoor-safe) + extra fuel", affiliate: "https://www.amazon.com/s?k=indoor+safe+propane+heater&tag=sustainab0b2b-20" },
         { name: "Extra wool blankets" },
         { name: "Weatherproof tarps" },
       ],
@@ -144,13 +144,13 @@ function generateChecklist(params: Record<string, string>): ChecklistSection[] {
     title: "Bug Out Bag (72-hr Go Bag)",
     emoji: "🎒",
     items: [
-      { name: "Quality backpack (40–60L)", affiliate: "https://amzn.to/bugoutbag" },
+      { name: "Quality backpack (40–60L)", affiliate: "https://www.amazon.com/s?k=bug+out+bag+backpack+60L&tag=sustainab0b2b-20" },
       { name: "Copies of important documents (laminated)" },
       { name: "Cash in small bills ($100+ in 1s, 5s, 20s)" },
       { name: "Change of clothes per person" },
-      { name: "Paracord (100ft)", affiliate: "https://amzn.to/paracord" },
-      { name: "Multi-tool or knife", affiliate: "https://amzn.to/multitool" },
-      { name: "Fire starter (lighter + waterproof matches + ferro rod)", affiliate: "https://amzn.to/firestarter" },
+      { name: "Paracord (100ft)", affiliate: "https://www.amazon.com/s?k=paracord+550+100ft&tag=sustainab0b2b-20" },
+      { name: "Multi-tool or knife", affiliate: "https://www.amazon.com/s?k=leatherman+multi+tool&tag=sustainab0b2b-20" },
+      { name: "Fire starter (lighter + waterproof matches + ferro rod)", affiliate: "https://www.amazon.com/s?k=ferro+rod+fire+starter&tag=sustainab0b2b-20" },
     ],
   });
 
